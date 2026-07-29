@@ -6,6 +6,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Random;
 
@@ -18,6 +19,10 @@ public class TodoService {
     List<Todo> todoList = new ArrayList<>();
     public void create(Todo todo) {
         todo.setId(random.nextInt(9999999));
+        Date current = new Date();
+        todo.setCurrentdate(current);
+        logger.info("currentdate of todo created {}:",current);
+        logger.info("formated tododate{}",todo.getTododate());
         todoList.add(todo);
     }
 
@@ -34,18 +39,26 @@ public class TodoService {
     }
 
     public Todo updateTodo(int id, Todo todo) {
+        //search for id in list
         for (Todo todoold : todoList){
+            //if id found
             if(todoold.getId()==id){
+                //log the oldtodo info in that id
                 logger.info("old todo {}",todoold);
+                //replace oldtodo fields with newtodo
                 todoold.setName(todo.getName());
                 todoold.setContent(todo.getContent());
                 todoold.setStatus(todo.isStatus());
-
+                todoold.setCurrentdate(todo.getCurrentdate());
+                todoold.setTododate(todo.getTododate());
+                //log the newtodo data
                 logger.info("new Todo {}",todoold);
+                //return new todo
                 return todoold;
             }
         }
 
+        //if id not found return null
         return null;
     }
 

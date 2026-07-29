@@ -1,10 +1,33 @@
 package com.project.TodoApplication.Models;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
+import java.util.Date;
+
 public class Todo {
     int id;
     String name;
     String content;
     boolean status;
+    Date currentdate;
+    @JsonFormat(pattern = "dd/MM/yyyy")
+    Date tododate;
+
+    public Date getCurrentdate() {
+        return currentdate;
+    }
+
+    public void setCurrentdate(Date currentdate) {
+        this.currentdate = currentdate;
+    }
+
+    public Date getTododate() {
+        return tododate;
+    }
+
+    public void setTododate(Date tododate) {
+        this.tododate = tododate;
+    }
 
     public int getId() {
         return id;
@@ -45,6 +68,8 @@ public class Todo {
                 ", name='" + name + '\'' +
                 ", content='" + content + '\'' +
                 ", status=" + status +
+                ", currentdate=" + currentdate +
+                ", tododate=" + tododate +
                 '}';
     }
 }
