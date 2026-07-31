@@ -1,8 +1,12 @@
 package com.project.TodoApplication.Controllers;
 
+import jakarta.servlet.http.HttpServletResponse;
 import org.slf4j.ILoggerFactory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.http.MediaType;
+import org.springframework.util.StreamUtils;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -24,13 +28,7 @@ public class FileController {
         logger.info("File Size{}",file.getSize());
         InputStream input = file.getInputStream();
         FileOutputStream output = new FileOutputStream("RecievedIMAGE.jpg");
-        byte[] buffer = new byte[1024];
-        int bytesRead;
-
-        while ((bytesRead = input.read(buffer)) != -1) {
-            output.write(buffer, 0, bytesRead);
-        }
-
+        StreamUtils.copy(input,output);
         output.close();
         input.close();
         return "File Sent";
@@ -48,5 +46,17 @@ public class FileController {
 
         });
         return "Handling Multiple FIles";
+    }
+
+    @GetMapping("/serveimage")
+    public void serveImageHandler(HttpServletResponse response){
+        try{
+            InputStream input = new FileInputStream("thankyou.jpg");
+            response.setContentType(MediaType.IMAGE_JPEG_VALUE);
+            StreamUtils.copy(input,response.getOutputStream());
+
+        }catch (Exception e){
+            System.out.println(e.getMessage());
+        }
     }
 }
