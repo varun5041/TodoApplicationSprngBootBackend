@@ -1,16 +1,20 @@
 package com.project.TodoApplication.Services;
 
+import com.project.TodoApplication.Exceptions.ResourceNotFoundException;
 import com.project.TodoApplication.Models.Todo;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
+import java.nio.file.ReadOnlyFileSystemException;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Random;
 
-@Component
+@Service
 public class TodoService {
     Logger logger = LoggerFactory.getLogger(TodoService.class);
 
@@ -33,7 +37,7 @@ public class TodoService {
     }
 
     public Todo getByid(int id) {
-        Todo todobyId = todoList.stream().filter(t -> t.getId()==id).findAny().get();
+        Todo todobyId = todoList.stream().filter(t -> t.getId()==id).findAny().orElseThrow(()-> new ResourceNotFoundException(HttpStatus.NOT_FOUND,"Todo not Found For id "+ id));
         logger.info("Returned Get todo By Id{}{}",id,todobyId);
         return todobyId;
     }
@@ -59,7 +63,7 @@ public class TodoService {
         }
 
         //if id not found return null
-        return null;
+        throw new ResourceNotFoundException(HttpStatus.NOT_FOUND,"Todo Not Found For ID:"+id);
     }
 
 
@@ -71,6 +75,6 @@ public class TodoService {
             }
         }
 
-        return null;
+        throw new ResourceNotFoundException(HttpStatus.NOT_FOUND,"Todo Not Found To Delete ID:"+ deleteid);
     }
 }

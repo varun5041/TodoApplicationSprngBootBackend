@@ -43,11 +43,10 @@ public class TodoController {
 
         Todo todo = service.getByid(id);
 
-        if (todo != null) {
-            return new ResponseEntity<>(todo, HttpStatus.OK);
+        if(todo==null){
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
-
-        return null;
+        return new ResponseEntity<>(todo, HttpStatus.OK);
     }
 
     @PutMapping("/update/{todoId}")
@@ -65,6 +64,12 @@ public class TodoController {
         return new ResponseEntity<>(deletedtodo,HttpStatus.OK);
 
     }
+
+//    @ExceptionHandler(NullPointerException.class)
+//    public String NullPointerExceptionHandler(NullPointerException exception){
+//        logger.error("Null Pointer Eception Encoundered");
+//        return "Not Found" + exception.getMessage();
+//    }
 
 
 
