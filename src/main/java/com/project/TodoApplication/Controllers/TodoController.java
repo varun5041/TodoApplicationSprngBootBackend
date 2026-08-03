@@ -1,6 +1,7 @@
 package com.project.TodoApplication.Controllers;
 
 import com.project.TodoApplication.Models.Todo;
+import com.project.TodoApplication.Repositories.TodoRepository;
 import com.project.TodoApplication.Services.TodoService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -19,12 +20,15 @@ public class TodoController {
     @Autowired
     TodoService service;
 
+    @Autowired
+    TodoRepository repository;
     Logger logger = LoggerFactory.getLogger(TodoController.class);
 
     @PostMapping("/create")
     public ResponseEntity<Todo> createTodoHandler(@RequestBody Todo todo){
         logger.info("todo Create called");
         service.create(todo);
+        repository.saveTodo(todo);
         logger.info("todo Created{}" ,todo);
         ResponseEntity<Todo> response1 = new ResponseEntity<>(todo,HttpStatus.CREATED);
         return response1;

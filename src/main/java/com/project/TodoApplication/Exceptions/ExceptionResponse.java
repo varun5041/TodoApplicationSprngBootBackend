@@ -1,6 +1,10 @@
 package com.project.TodoApplication.Exceptions;
 
 import org.springframework.http.HttpStatus;
+import org.springframework.jdbc.datasource.DriverManagerDataSource;
+
+import javax.sql.DataSource;
+import java.sql.DriverManager;
 
 public class ExceptionResponse {
     private String message;

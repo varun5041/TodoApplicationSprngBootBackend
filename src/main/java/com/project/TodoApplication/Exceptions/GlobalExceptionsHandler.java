@@ -8,13 +8,13 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 
+import java.sql.DriverManager;
 import java.util.NoSuchElementException;
 
 @ControllerAdvice
 public class GlobalExceptionsHandler {
 
     Logger logger = LoggerFactory.getLogger(GlobalExceptionsHandler.class);
-
     @ExceptionHandler(NullPointerException.class)
     public ResponseEntity<String> NullPointerExceptionHanlder(NullPointerException exception){
         logger.info("NULL pointer Exception from Global Exception Handler");
