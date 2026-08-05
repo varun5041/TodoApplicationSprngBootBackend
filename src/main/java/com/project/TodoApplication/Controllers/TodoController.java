@@ -11,6 +11,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.text.ParseException;
 import java.util.List;
 
 @RestController
@@ -42,15 +43,15 @@ public class TodoController {
     }
 
     @GetMapping("/getByid/{todoId}")
-    public ResponseEntity<Todo> getTodoByid(@PathVariable("todoId") int id) {
+    public ResponseEntity<Todo> getTodoByid(@PathVariable("todoId") int id) throws ParseException {
         logger.info("getTodoById Called");
 
-        Todo todo = service.getByid(id);
-
-        if(todo==null){
+//        Todo todo = service.getByid(id);
+        Todo sqltodo = repository.gettodo(id);
+        if(sqltodo==null){
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
-        return new ResponseEntity<>(todo, HttpStatus.OK);
+        return new ResponseEntity<>(sqltodo, HttpStatus.OK);
     }
 
     @PutMapping("/update/{todoId}")
