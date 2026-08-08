@@ -1,37 +1,37 @@
-package com.project.TodoApplication.Services;
+package com.project.TodoApplication.Services.Implementations;
 
 import com.project.TodoApplication.Exceptions.ResourceNotFoundException;
 import com.project.TodoApplication.Models.Todo;
 import com.project.TodoApplication.Repositories.TodoRepository;
+import com.project.TodoApplication.Services.Todoservices;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
-import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
-import java.nio.file.ReadOnlyFileSystemException;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Random;
 
 @Service
-public class TodoService {
-    Logger logger = LoggerFactory.getLogger(TodoService.class);
+public class TodoServiceImpl implements Todoservices {
+    Logger logger = LoggerFactory.getLogger(TodoServiceImpl.class);
 
     @Autowired
     TodoRepository repository;
     Random random = new Random();
 
     List<Todo> todoList = new ArrayList<>();
-    public void create(Todo todo) {
+    public Todo create(Todo todo) {
         todo.setId(random.nextInt(9999999));
         Date current = new Date();
         todo.setCurrentdate(current);
-        logger.info("currentdate of todo created {}:",current);
-        logger.info("formated tododate{}",todo.getTododate());
+//        logger.info("currentdate of todo created {}:",current);
+//        logger.info("formated tododate{}",todo.getTododate());
         todoList.add(todo);
+        return todo;
     }
 
 

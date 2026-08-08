@@ -17,6 +17,7 @@ public class TodoRowMapper implements RowMapper<Todo> {
         todo.setId(rs.getInt("id"));
         todo.setName(rs.getString("name"));
         todo.setContent( rs.getString("content"));
+        todo.setStatus(rs.getBoolean("status"));
         //sql returns LocalDateTime for Sql DataType DATETIME so we need to Convert it to Type of our field ->Date
         todo.setCurrentdate(HelperClass.parseDate((LocalDateTime) rs.getObject("currentdate")));
         todo.setTododate(HelperClass.parseDate((LocalDateTime) rs.getObject("tododate")));

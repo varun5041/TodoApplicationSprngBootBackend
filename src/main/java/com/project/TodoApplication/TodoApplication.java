@@ -27,25 +27,25 @@ public class TodoApplication implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
-//        System.out.println("Application started:");
-//        JdbcTemplate template = repository.getTemplate();
-//        logger.info("Templete Object Created:{}",template);
-//        logger.info("Templete INFO{}",template);
-        //CREATE TODO
-//        Todo todo = new Todo();
-//        todo.setId(12345);
-//        todo.setName("Timepass no 1");
-//        todo.setContent("bohot timepass karna hai");
-//        todo.setCurrentdate(new Date());
-//        todo.setTododate(new Date());
-//        todo.setStatus(false);
-//        repository.saveTodo(todo);
-        //GET BY ID
-//        repository.gettodo(12345);
-        //GETALL TODOS
-        repository.getAllTodos();
-
-//      Todo newTODOTest = new Todo();
+////        System.out.println("Application started:");
+////        JdbcTemplate template = repository.getTemplate();
+////        logger.info("Templete Object Created:{}",template);
+////        logger.info("Templete INFO{}",template);
+//        //CREATE TODO
+////        Todo todo = new Todo();
+////        todo.setId(12345);
+////        todo.setName("Timepass no 1");
+////        todo.setContent("bohot timepass karna hai");
+////        todo.setCurrentdate(new Date());
+////        todo.setTododate(new Date());
+////        todo.setStatus(false);
+////        repository.saveTodo(todo);
+//        //GET BY ID
+////        repository.gettodo(12345);
+//        //GETALL TODOS
+//        repository.getAllTodos();
+//
+////      Todo newTODOTest = new Todo();
 ///     newTODOTest.setName("Go to Dmart");
 ///     newTODOTest.setContent("Buy groceries and stationary");
 ////
@@ -54,8 +54,5 @@ public class TodoApplication implements CommandLineRunner {
 //            newTODOTest.setStatus(true);
 //            repository.updateByID(8384247,newTODOTest);
 //            repository.deletedByID(2058401);
-
-
-
     }
 }
