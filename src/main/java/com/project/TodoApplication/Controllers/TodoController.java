@@ -38,7 +38,7 @@ public class TodoController {
     @GetMapping("/gettodos")
     public ResponseEntity<List<Todo>> getTodos(){
         logger.info("Get Todos Called!");
-        ResponseEntity<List<Todo>> response2 = new ResponseEntity<>(service.getTodos(),HttpStatus.OK);
+        ResponseEntity<List<Todo>> response2 = new ResponseEntity<>(repository.getAllTodos(),HttpStatus.OK);
         return response2;
     }
 

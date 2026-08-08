@@ -10,7 +10,10 @@ import java.util.Date;
 public class HelperClass {
     //LocalDateTime ->Date Converter
     public static Date parseDate(LocalDateTime localDateTime){
-//        System.out.println(ZoneId.systemDefault());
+        if(localDateTime==null){
+            return null;
+        }
+        //        System.out.println(ZoneId.systemDefault());
         Date date= Date.from(localDateTime.atZone(ZoneId.systemDefault()).toInstant());
 //        System.out.println(date);
         return date;

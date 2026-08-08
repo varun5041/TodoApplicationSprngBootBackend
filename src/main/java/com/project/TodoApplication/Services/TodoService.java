@@ -2,8 +2,10 @@ package com.project.TodoApplication.Services;
 
 import com.project.TodoApplication.Exceptions.ResourceNotFoundException;
 import com.project.TodoApplication.Models.Todo;
+import com.project.TodoApplication.Repositories.TodoRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
@@ -18,6 +20,8 @@ import java.util.Random;
 public class TodoService {
     Logger logger = LoggerFactory.getLogger(TodoService.class);
 
+    @Autowired
+    TodoRepository repository;
     Random random = new Random();
 
     List<Todo> todoList = new ArrayList<>();
